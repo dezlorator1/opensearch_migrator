@@ -28,13 +28,13 @@ GITLAB_DOMAIN = "gitlab.your-domain.com"  # Ваш домен GitLab
 Укажите правильный путь к вашим проектам:
 ```yaml
 volumes:
-  - C:\Users\Andrew\projects:/projects  # ИЗМЕНИТЕ на ваш путь
-  - C:\Users\Andrew\.m2:/root/.m2       # Путь к Maven кэшу
+  - <path_to_projects>:/projects  # ИЗМЕНИТЕ на ваш путь
+  - <path_to_m2>:/root/.m2       # Путь к Maven кэшу
 ```
 
 ### 3. Проверьте settings.xml
 
-Убедитесь, что в `C:\Users\Andrew\.m2\settings.xml` настроен доступ к вашему приватному Maven репозиторию:
+Убедитесь, что в `<path_to_m2>\settings.xml` настроен доступ к вашему приватному Maven репозиторию:
 ```xml
 <settings>
   <servers>
