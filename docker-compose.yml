@@ -16,6 +16,7 @@ services:
       
       # Опционально: если хотите сохранять Git credentials между запусками
       # - ./git-credentials:/root/.git-credentials
+      - ./.env:/workspace/.env:ro
       
     working_dir: /projects
     stdin_open: true

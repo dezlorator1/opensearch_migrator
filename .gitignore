@@ -13,6 +13,7 @@ __pycache__/
 
 # Git credentials (не коммитим токены!)
 .git-credentials
+.env
 
 # Maven
 target/
