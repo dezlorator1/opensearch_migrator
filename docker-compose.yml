@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  opensearch-migrator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: opensearch-migrator
+    volumes:
+      # Подключаем папку с вашими проектами (ИЗМЕНИТЕ НА СВОЙ ПУТЬ)
+      - <path_to_projects>:/projects
+      
+      # Подключаем Maven cache и settings.xml с вашего компа
+      # settings.xml будет автоматически использоваться Maven для доступа к приватному репозиторию
+      - <path_to_m2>:/root/.m2
+      
+      # Опционально: если хотите сохранять Git credentials между запусками
+      # - ./git-credentials:/root/.git-credentials
+      
+    working_dir: /projects
+    stdin_open: true
+    tty: true
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/temurin-22-jdk-amd64
+      - MAVEN_HOME=/opt/maven
+      # Увеличиваем память для Java 22 проектов
+      - MAVEN_OPTS=-Xmx3072m -XX:+UseG1GC
+      # Опционально: если нужен proxy для Maven
+      # - MAVEN_OPTS=-Xmx3072m -Dhttp.proxyHost=proxy.example.com -Dhttp.proxyPort=8080
