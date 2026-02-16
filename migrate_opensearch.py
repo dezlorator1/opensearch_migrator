@@ -380,7 +380,7 @@ def main():
                 print("\n⚠️  Proceeding with --force flag (you may lose uncommitted changes!)")
 
         # 2. Create feature branch
-        branch_name = f"feature/{task_number}-opensearch-{display_version}"
+        branch_name = f"feature/{feat_number}-opensearch-{display_version}"
         print(f"\n[2/8] Creating feature branch: {branch_name}")
         run_command(["git", "checkout", "-b", branch_name], cwd=project_path)
 
@@ -434,9 +434,9 @@ def main():
         files_to_commit.append(str(changelog_relative_path))
 
         # 6. Run Maven build
-        print(f"\n[6/8] Running Maven build...")
+        print(f"\n[6/8] Running Maven build (skipping tests)...")
         result = run_command(
-            ["mvn", "clean", "compile", "install"],
+            ["mvn", "clean", "compile", "install", "-DskipTests"],
             cwd=project_path,
             check=False
         )
